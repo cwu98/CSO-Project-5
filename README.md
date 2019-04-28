@@ -1,5 +1,5 @@
 # Project 5: My Own Shell
-Due date: May 2 at 11:55pm.
+Due date: May 9 at 11:55pm.
 
 
 **You may discuss any of the assignments with your classmates and instructors (or anyone else) but
