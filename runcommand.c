@@ -1,4 +1,4 @@
-#include "proj4.h"
+#include "proj5.h"
 
 // execute a command with optional wait
 int runcommand(char **cline, int where) {

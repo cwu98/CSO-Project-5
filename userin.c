@@ -1,4 +1,4 @@
-#include "proj4.h"
+#include "proj5.h"
 
 // program buffers and work pointer
 static char inpbuf[MAXBUF], tokbuf[2*MAXBUF],
