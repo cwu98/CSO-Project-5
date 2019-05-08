@@ -44,7 +44,10 @@ int procline(void)
 
             if( toktype == EOL )
                 return;
-            narg = MAXARG;
+	    /*
+	     *another fix for BUG 1 is to reset narg to 0
+	     */
+	    narg = 0;
             break;
         }
     }
