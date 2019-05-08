@@ -7,7 +7,11 @@ int procline(void)
 {
 
     char *arg[MAXARG + 1];  // pointer array for runcommand
-    int narg ;              // number of arguments 
+    /*
+     * Here is where I fixed BUG 1, the narg value should be initialized to 0, not just declared.
+     * Declaring without initializing will lead to undefined behavior
+     */
+    int narg = 0  ;              // number of arguments 
     int toktype;            // type of token in command
     int type;               // type =  FOREGROUND or BACKGROUND
 
