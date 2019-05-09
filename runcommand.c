@@ -20,6 +20,10 @@ int runcommand(char **cline, int where) {
     // program is running in the background
     if(where == BACKGROUND) {
         printf("[Process id %d]\n",pid);
+
+	//fix for BUG 4: catch SIGINT signal
+	//ignore termination for background processes
+	signal(SIGINT,SIG_IGN);
         return (0);
     }
 

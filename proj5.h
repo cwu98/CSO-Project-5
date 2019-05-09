@@ -38,6 +38,9 @@ int runcommand(char **cline, int where) ;
 int sh_cd(char **args) ;
 
 int sh_exit() ; 
+
+void sigint_handler(int signum);
+
 #endif // PROJECT4_H
 
 
