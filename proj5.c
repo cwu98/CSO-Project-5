@@ -7,7 +7,7 @@ int main()
 
 
     //run the shell until EOF (keyboard Ctrl+D) is detected
-    while (userinput(  ) != EOF ) {
+  while (userinput(  ) != EOF ) {
 
         procline();
     }

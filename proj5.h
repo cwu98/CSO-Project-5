@@ -35,7 +35,9 @@ int gettok(char **outptr) ;
 
 int runcommand(char **cline, int where) ;
 
+int sh_cd(char **args) ;
 
+int sh_exit() ; 
 #endif // PROJECT4_H
 
 

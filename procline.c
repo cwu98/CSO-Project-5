@@ -14,10 +14,11 @@ int procline(void)
     int narg = 0  ;              // number of arguments 
     int toktype;            // type of token in command
     int type;               // type =  FOREGROUND or BACKGROUND
-
-
+    const char* home_dir="HOME"; //home directory
+    char * dir_pre = "/";
     while ( 1 ) // loop forever
     {
+      
         // take action according to token type
         switch(toktype = gettok(&arg[narg]))
 
@@ -26,7 +27,15 @@ int procline(void)
         case ARG:
             if(narg<MAXARG)
                 narg++;
-            break;
+	    /*
+	     *this is where I implemented code for BUG 3
+	     *typing exit into shell comand line exits the shell
+	     */
+	    if (strcmp(arg[0],"exit")==0){
+	      exit(0);
+	    }
+	  
+	    break;
 
         case EOL:
         case SEMICOLON:
@@ -36,11 +45,30 @@ int procline(void)
             else
                 type = FOREGROUND;
 
+	   
             if(narg != 0)
             {
                 arg[narg] = 0;
-                runcommand(arg,type);
-            }
+
+		/*
+		 *fix for BUG 2
+		 *this is where I implemented the cd command using chdir() function
+		 */
+		if (strcmp(arg[0],"cd")==0){
+		  if (arg[1] == NULL){ //go to home directory
+		    chdir(getenv(home_dir));
+		  }
+		  else if (chdir(strcat(arg[1],dir_pre))!=0){
+		    //error message, chdir failed
+		    printf("Error: Not a directory \n");
+		      return;
+		  }
+		}
+
+		else{
+		runcommand(arg,type);
+		}            
+	    }
 
             if( toktype == EOL )
                 return;
@@ -49,6 +77,7 @@ int procline(void)
 	     */
 	    narg = 0;
             break;
+	DEFAULT : printf("hi%s\n",arg[1]);
         }
     }
 }

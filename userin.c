@@ -37,7 +37,9 @@ int userinput( ) {
             printf("%s",PROMPT);
         }
     }
+   
 }
+
 static char special[] = {' ','\t','&',';','\n','\0'};
 
 int inarg(char c) {
