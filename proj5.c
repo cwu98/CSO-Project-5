@@ -18,7 +18,7 @@ void sigint_handler(int num){
 void sigchld_handler(int num){
   int child_status;
   pid_t pid;
-  while(pid=(waitpid(-1,&child_status,0))>0){
+  while(pid=(waitpid(-1,&child_status,WNOHANG))>0){
 }
   //  printf("reaped\n"); 
 }
