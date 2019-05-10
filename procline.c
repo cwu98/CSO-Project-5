@@ -17,7 +17,7 @@ int procline(void)
     int type;               // type =  FOREGROUND or BACKGROUND
     
     const char* home_dir="HOME"; //home directory 
-    char * dir_pre = "/";
+    // char * dir_pre = "/";
     while ( 1 ) // loop forever
     {
       
@@ -60,7 +60,7 @@ int procline(void)
 		  if (arg[1] == NULL){ //go to home directory
 		    chdir(getenv(home_dir));
 		  }
-		  else if (chdir(strcat(arg[1],dir_pre))!=0){ //append "\" to path_name
+		  else if (chdir(arg[1])!=0){ 
 		    //error message, chdir failed
 		    printf("Error: Not a directory \n");
 		     return;
