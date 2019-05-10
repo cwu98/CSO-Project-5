@@ -36,7 +36,7 @@ I fixed Bug 4 in lines 8-12 and in line 31 in the proj5.c program, lines 17-21 i
 For this bug, we do not want `Ctrl+C` to terminate the shell, just the foreground processes. 
 Before the main function, I implemented a signal handler for the `SIGINT` signal. In the `void sigint_handler(int num)`signal handler function, I put a recursive piece of code: `signal(SIGINT, sigint_handler);` to reset the signal disposition (signal disposition determines how the process behaves when it is delivered the signal). There are cases where a handler set with signal will not be properly used again because after one signal, the handler might be reset to the default, which for `SIGINT`, is to kill the process. In order to handle another signal of this type, the sigint_handler calls the `signal` function again to set the signal disposition. 
 
-I call the signal function inside main() of proj5.c.
+I call the signal function inside `main()` of proj5.c.
 
 We don't want SIGINT signal to terminate background processes, which are the processes called with `&`. In the runcommand.c program, I added an `if` statement for background processes, using the `if (where==BACKGROUND) ` check. The code inside the  if block uses `signal` to catch the `SIGINT` signal and executes `SIG_IGN` instead, which just ignores the signal. So, typing `Ctrl+C` when a background process is running will not terminate the background process. 
 
@@ -50,6 +50,6 @@ Reaping is performed by parent on terminated child using `wait()` or `waitpid()`
 `WNOHANG` is an option that can be set in the third parameter. It causes `waitpid()` to return immediately if none of the child processes in the wait set terminated, instead of waiting. `waitpid` will return 0 instead of blocking. This option allows continuation of doing work while waiting for a child to terminate.
 
 
-I call the signal function inside main() of proj5.c.
+I call the signal function inside `main()` of proj5.c.
 
 
