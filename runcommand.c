@@ -9,7 +9,15 @@ int runcommand(char **cline, int where) {
     case -1:
         perror(SHELL_NAME);
         return (-1);
+
     case 0:
+      
+      //fix for BUG 4, catch SIGINT signal
+      //ignore if the process is a background process
+      if(where==BACKGROUND){
+	signal(SIGINT,SIG_IGN); 
+
+      }
         execvp(*cline,cline);
         //we should never get to this code, sice execve does not return
         perror(*cline);
@@ -21,9 +29,7 @@ int runcommand(char **cline, int where) {
     if(where == BACKGROUND) {
         printf("[Process id %d]\n",pid);
 
-	//fix for BUG 4: catch SIGINT signal
-	//ignore termination for background processes
-	signal(SIGINT,SIG_IGN);
+  
         return (0);
     }
 

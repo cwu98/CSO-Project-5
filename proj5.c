@@ -7,18 +7,31 @@
 void sigint_handler(int num){
   signal(SIGINT,sigint_handler); 
   printf(" Terminated foreground process \n");
-  fflush(stdout);
+  
 }
 
+/*
+ *signal handler for SIGCHLD
+ */
+void sigchld_handler(int num){
+  int child_status;
+  pid_t pid;
+  while(pid=(waitpid(-1,&child_status,0))>0){
+}
+  printf("reaped\n"); 
+}
 
 int main()
 {
-  //  while((pid=waitpid(-1,NULL,WNOHANG))>0){
-  // }
+  
 
   //catch SIGINT signal
   signal(SIGINT,sigint_handler);
-    //run the shell until EOF (keyboard Ctrl+D) is detected
+  
+  //catch SIGCHLD signal, reap zombie processes
+   signal(SIGCHLD,sigchld_handler);
+ 
+ //run the shell until EOF (keyboard Ctrl+D) is detected
   while (userinput(  ) != EOF ) {
 
         procline();
