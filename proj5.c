@@ -2,15 +2,17 @@
 #include "proj5.h"
 
 /*
+ *fix for BUG 4
  *signal handler for SIGINT
  */
 void sigint_handler(int num){
   signal(SIGINT,sigint_handler); 
-  printf(" Terminated foreground process \n");
+  printf(" \n");
   
 }
 
 /*
+ *fix for BUG 5
  *signal handler for SIGCHLD
  */
 void sigchld_handler(int num){
@@ -18,7 +20,7 @@ void sigchld_handler(int num){
   pid_t pid;
   while(pid=(waitpid(-1,&child_status,0))>0){
 }
-  printf("reaped\n"); 
+  //  printf("reaped\n"); 
 }
 
 int main()
