@@ -7,6 +7,7 @@ int procline(void)
 {
 
     char *arg[MAXARG + 1];  // pointer array for runcommand
+   
     /*
      * Here is where I fixed BUG 1, the narg value should be initialized to 0, not just declared.
      * Declaring without initializing will lead to undefined behavior
@@ -14,7 +15,8 @@ int procline(void)
     int narg = 0  ;              // number of arguments 
     int toktype;            // type of token in command
     int type;               // type =  FOREGROUND or BACKGROUND
-    const char* home_dir="HOME"; //home directory
+    
+    const char* home_dir="HOME"; //home directory 
     char * dir_pre = "/";
     while ( 1 ) // loop forever
     {
@@ -58,10 +60,10 @@ int procline(void)
 		  if (arg[1] == NULL){ //go to home directory
 		    chdir(getenv(home_dir));
 		  }
-		  else if (chdir(strcat(arg[1],dir_pre))!=0){
+		  else if (chdir(strcat(arg[1],dir_pre))!=0){ //append "\" to path_name
 		    //error message, chdir failed
 		    printf("Error: Not a directory \n");
-		      return;
+		     return;
 		  }
 		}
 
@@ -77,7 +79,7 @@ int procline(void)
 	     */
 	    narg = 0;
             break;
-	DEFAULT : printf("hi%s\n",arg[1]);
+	
         }
     }
 }

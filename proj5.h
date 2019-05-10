@@ -39,7 +39,9 @@ int sh_cd(char **args) ;
 
 int sh_exit() ; 
 
-void sigint_handler(int signum);
+void sigint_handler(int num);
+
+void sigchld_handler(int num);
 
 #endif // PROJECT4_H
 

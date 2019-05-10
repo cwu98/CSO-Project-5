@@ -14,10 +14,11 @@ int runcommand(char **cline, int where) {
       
       //fix for BUG 4, catch SIGINT signal
       //ignore if the process is a background process
-      if(where==BACKGROUND){
-	signal(SIGINT,SIG_IGN); 
-
+            if(where==BACKGROUND){
+	      if(signal(SIGINT,SIG_IGN)==0){
+	      printf("nothing happening\n"); 
       }
+	    }
         execvp(*cline,cline);
         //we should never get to this code, sice execve does not return
         perror(*cline);
